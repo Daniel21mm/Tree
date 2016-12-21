@@ -42,7 +42,7 @@ public:
     Type                min_value()throw(ExTree);
     Type                root()throw(ExTree);
     bool                isempty();
-    uint                depth();
+    uint                depth() throw(ExTree);
     Tree<Type>&         operator =(const Tree<Type>&)throw(ExTree);
 
 
@@ -398,11 +398,18 @@ bool Tree<Type>::isempty()
 
 
 template<typename Type>
-uint Tree<Type>::depth()
+uint Tree<Type>::depth() throw(ExTree)
 {
+    if(element!=nullptr)
+    {
     uint max(0);
     _depth(element,0,max);
     return max;
+    }
+    else
+    {
+        throw ExTree("empty tree");
+    }
 }
 
 
