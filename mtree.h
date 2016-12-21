@@ -26,6 +26,8 @@ class Tree
     void                delete_tree(Node*);
     Type                _max_value(Node* node);
     Type                _min_value(Node* node);
+    void                _depth(Node*, uint, uint &);
+
 
 
 public:
@@ -40,6 +42,7 @@ public:
     Type                min_value()throw(ExTree);
     Type                root()throw(ExTree);
     bool                isempty();
+    uint                depth();
     Tree<Type>&         operator =(const Tree<Type>&)throw(ExTree);
 
 
@@ -240,6 +243,32 @@ Type Tree<Type>::_min_value(Tree::Node *node)
     }
 }
 
+template<typename Type>
+void Tree<Type>::_depth(Node* node,uint variant, uint& max)
+{
+    if(node->left==nullptr && node->right==nullptr)
+    {
+        if(variant>max)
+        {
+            max=variant;
+        }
+    }
+    else
+    {
+        if(node->left!=nullptr)
+        {
+            uint _variant=variant+1;
+            _depth(node->left,_variant,max);
+        }
+
+        if(node->right!=nullptr)
+        {
+           uint  _variant=variant+1;
+            _depth(node->right,_variant,max);
+        }
+    }
+}
+
 
 
 
@@ -365,6 +394,15 @@ template<typename Type>
 bool Tree<Type>::isempty()
 {
     return element->isvalue;
+}
+
+
+template<typename Type>
+uint Tree<Type>::depth()
+{
+    uint max(0);
+    _depth(element,0,max);
+    return max;
 }
 
 

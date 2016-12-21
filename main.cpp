@@ -19,6 +19,7 @@ int main()
     t.print();
     std::cout<<"\n\n\n";
 
+
     std::cout<<"создаем дерево 2, добавляем элементы 2 1 3  и отображаем на экран.\n";
 
     Tree<int> p;
@@ -43,6 +44,11 @@ int main()
 
     std::cout<<"root.\n";
     std::cout<< t.root()<<"\n";
+
+    std::cout<<"depth.\n";
+    std::cout<< t.depth()<<"\n";
+
+
 
 
     std::cout<<"hello, world\n";
